@@ -15,9 +15,12 @@ function maxBits(arr) {
   }
   return res;
 }
+
 function getDigit(num, i) {
+  // 取 num 第 i 位的數
   return Math.floor(Math.abs(num) / Math.pow(10, i - 1)) % 10;
 }
+
 function process(arr, l, r, digits) {
   let radix = 10;
   let i = 0,
@@ -31,11 +34,12 @@ function process(arr, l, r, digits) {
     // count[1] 當前位(d位)是0和1的數字有多少個
     // count[2] 當前位(d位)是0~2的數字有多少個
     // count[i] 當前位(d位)是0~i的數字有多少個
-    let count = new Array(digits).fill(0);
+    let count = new Array(radix).fill(0);
     for (i = l; i <= r; i++) {
       j = getDigit(arr[i], d);
       count[j]++;
     }
+
     for (i = 1; i < radix; i++) {
       count[i] = count[i] + count[i - 1];
     }
